@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail de la Publication</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+
+    <h2>Commentaires :</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.content }} - {{ comment.author.username }}</li>
+        {% empty %}
+            <li>Aucun commentaire pour le moment.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Ajouter un commentaire :</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Ajouter</button>
+    </form>
+</body>
+</html>

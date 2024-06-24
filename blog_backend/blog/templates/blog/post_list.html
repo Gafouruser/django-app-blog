@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Publications</title>
+</head>
+<body>
+    <h1>Liste des publications</h1>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></li>
+        {% empty %}
+            <li>Aucune publication pour le moment.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="pagination">
+        {% if posts.has_previous %}
+            <a href="?page=1">&laquo; Première</a>
+            <a href="?page={{ posts.previous_page_number }}">Précédente</a>
+        {% endif %}
+
+        <span class="current">Page {{ posts.number }} de {{ posts.paginator.num_pages }}.</span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">Suivante</a>
+            <a href="?page={{ posts.paginator.num_pages }}">Dernière &raquo;</a>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if post.instance.pk %}Modifier{% else %}Créer{% endif %} une Publication</title>
+</head>
+<body>
+    <h1>{% if post.instance.pk %}Modifier{% else %}Créer{% endif %} une Publication</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">{% if post.instance.pk %}Modifier{% else %}Créer{% endif %}</button>
+    </form>
+</body>
+</html>
